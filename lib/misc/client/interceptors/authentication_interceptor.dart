@@ -36,7 +36,7 @@ class AuthenticationInterceptors extends InterceptorsWrapper {
     if (this.client.authOptions.tokenType == TokenType.Bearer) {
       options.headers.addAll({
         this.client.authOptions.customAuthHeader:
-            "${this.client.authOptions.tokenType} ${this.client.authentication[this.client.authOptions.tokenKey]}"
+            "Bearer ${this.client.authentication[this.client.authOptions.tokenKey]}"
       });
     }
   }
