@@ -1,7 +1,9 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:miswag_auth/repository/user_repository.dart';
+
 import 'bloc.dart';
 
 class AuthenticationBloc
@@ -9,10 +11,8 @@ class AuthenticationBloc
   final UserRepository userRepository;
 
   AuthenticationBloc({@required this.userRepository})
-      : assert(userRepository != null);
-
-  @override
-  AuthenticationState get initialState => AuthenticationUninitialized();
+      : assert(userRepository != null),
+        super(AuthenticationUninitialized());
 
   @override
   Stream<AuthenticationState> mapEventToState(

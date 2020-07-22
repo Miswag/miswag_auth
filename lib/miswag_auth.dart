@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:miswag_auth/bloc/bloc.dart';
 import 'package:miswag_auth/misc/client/api_client.dart';
+import 'package:miswag_auth/models/auth_options.dart';
 import 'package:miswag_auth/repository/user_repository.dart';
 
 final GetIt I = GetIt.instance;
@@ -24,14 +25,9 @@ class Authentication extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _AuthenticationState();
 
-  static setup(
-      {String baseUrl,
-      String loginPath = "login.php",
-      String tokenKey = "token",
-      String usernameKey = "username",
-      String passwordKey = "password"}) {
-    I.registerLazySingleton(
-        () => ApiClient(baseUrl: baseUrl, tokenKey: tokenKey));
+  static setup({@required AuthOptions options}) {
+    assert(options != null);
+    I.registerLazySingleton(() => ApiClient(options));
     I.registerLazySingleton(() => UserRepository(GetIt.I.get<ApiClient>()));
   }
 }
@@ -63,22 +59,3 @@ class _AuthenticationState extends State<Authentication> {
     );
   }
 }
-
-/*
-    return Authentication(
-      baseUrl: ..,
-      loginPath: ..,
-      tokenKey: .. (token),
-      usernameKey: ..,
-      passwordKey: ..,
-      onAuthentication: ..,
-      onAuthenticated: ...,
-      onSplash:...
-    );
-
-    /// Authentication.api.client.post(...) // I.Get<ApiClient>
-    /// Authentication.authenticated(loginObject: map).. // context.bloc<AuthenticationBloc>().add(...)
-    /// Authentication.logout() // context.bloc<AuthenticationBloc>().add(...)
-    /// Authentication.loginObject // access from UserRepository
-    ///
- */

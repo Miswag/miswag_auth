@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:miswag_auth/bloc/bloc.dart';
 import 'package:miswag_auth/miswag_auth.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:miswag_auth/models/auth_options.dart';
 
 main() {
-  Authentication.setup(
+  const AuthOptions options = AuthOptions(
       baseUrl: "https://jsonbin.io/", loginPath: "5ebcfb3a47a2266b14784142");
+  Authentication.setup(options: options);
   runApp(SampleApp());
 }
 
