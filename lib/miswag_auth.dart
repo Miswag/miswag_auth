@@ -28,7 +28,8 @@ class Authentication extends StatefulWidget {
   static setup({@required AuthOptions options}) {
     assert(options != null);
     I.registerLazySingleton(() => ApiClient(options));
-    I.registerLazySingleton(() => UserRepository(GetIt.I.get<ApiClient>()));
+    I.registerLazySingleton(() =>
+        UserRepository(GetIt.I.get<ApiClient>(), loginPath: options.loginPath));
   }
 }
 

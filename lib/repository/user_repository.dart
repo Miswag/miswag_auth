@@ -1,9 +1,10 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:miswag_auth/misc/client/api_client.dart';
 import 'package:miswag_auth/services/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:convert';
 
 const kTokenField = "mswgauthobj";
 
@@ -11,9 +12,11 @@ class UserRepository {
   final ApiClient client;
   final String loginPath;
   LoginAPI loginAPI;
-  UserRepository(ApiClient client, {this.loginPath = "login.php"}) : client = client, super() {
+  UserRepository(ApiClient client, {this.loginPath = "login.php"})
+      : client = client,
+        super() {
     loginAPI = LoginAPI(client, loginPath);
-    getAuthentication().then((auth){
+    getAuthentication().then((auth) {
       if (auth != null) {
         client.authentication = auth;
       }
@@ -29,7 +32,7 @@ class UserRepository {
       client.authentication = authentication;
       return authentication;
     } on DioError catch (e) {
-      throw Exception(e.response.data["msg"]);
+      rethrow;
     }
   }
 
