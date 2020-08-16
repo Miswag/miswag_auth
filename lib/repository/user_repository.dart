@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:miswag_auth/misc/client/api_client.dart';
 import 'package:miswag_auth/services/login.dart';
@@ -31,7 +30,7 @@ class UserRepository {
       final authentication = await loginAPI.login(email, password);
       client.authentication = authentication;
       return authentication;
-    } on DioError catch (e) {
+    } on Exception catch (e) {
       rethrow;
     }
   }

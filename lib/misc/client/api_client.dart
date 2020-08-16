@@ -15,8 +15,8 @@ class ApiClient {
       : assert(authOptions != null) {
     final BaseOptions options = BaseOptions(
         baseUrl: authOptions.baseUrl,
-        connectTimeout: 5000,
-        receiveTimeout: 3000,
+        connectTimeout: authOptions.connectingTimeout,
+        receiveTimeout: authOptions.receivingTimeout,
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json"

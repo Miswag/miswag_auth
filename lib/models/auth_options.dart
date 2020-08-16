@@ -10,6 +10,8 @@ class AuthOptions {
   final String passwordKey;
   final TokenType tokenType;
   final String customAuthHeader;
+  final int connectingTimeout;
+  final int receivingTimeout;
 
   const AuthOptions(
       {@required this.baseUrl,
@@ -18,6 +20,8 @@ class AuthOptions {
       this.usernameKey = "username",
       this.passwordKey = "password",
       this.tokenType = TokenType.GET,
-      this.customAuthHeader = "Authorization"})
+      this.customAuthHeader = "Authorization",
+      this.connectingTimeout = 5000,
+      this.receivingTimeout = 6000})
       : assert(baseUrl != null);
 }

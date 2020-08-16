@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:miswag_auth/misc/client/api_client.dart';
+import 'package:miswag_auth/misc/exceptions/login_api_exception.dart';
 
 class LoginAPI {
   final ApiClient client;
@@ -11,7 +12,13 @@ class LoginAPI {
       final Response response = await client.authClient
           .post(path, queryParameters: {"email": email, "password": password});
       return response.data;
-    } on Exception catch (_) {
+    } on DioError catch (e) {
+      if (e.response != null) {
+        if (e.response.data is Map)
+          throw LoginAPIException(e.response.data);
+        else
+          throw LoginAPIException({"error": e.response.data});
+      }
       rethrow;
     }
   }
