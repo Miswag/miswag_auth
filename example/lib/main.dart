@@ -27,8 +27,8 @@ class SampleApp extends StatelessWidget {
           body: Center(
             child: RaisedButton(
               child: Text("Launch App"),
-              onPressed: () =>
-                  context.bloc<AuthenticationBloc>().add(AppStarted()),
+              onPressed: () => BlocProvider.of<AuthenticationBloc>(context)
+                  .add(AppStarted()),
             ),
           ),
         ),
@@ -38,7 +38,7 @@ class SampleApp extends StatelessWidget {
             child: RaisedButton(
               child: Text("Logout"),
               onPressed: () =>
-                  context.bloc<AuthenticationBloc>().add(LoggedOut()),
+                  BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut()),
             ),
           ),
         ),
@@ -47,8 +47,7 @@ class SampleApp extends StatelessWidget {
           body: Center(
             child: RaisedButton(
               child: Text("Login"),
-              onPressed: () => context
-                  .bloc<AuthenticationBloc>()
+              onPressed: () => BlocProvider.of<AuthenticationBloc>(context)
                   .add(LoggedIn(authentication: {"token": "hello"})),
             ),
           ),

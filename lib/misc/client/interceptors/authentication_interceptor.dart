@@ -6,23 +6,22 @@ class AuthenticationInterceptors extends InterceptorsWrapper {
   final ApiClient client;
 
   AuthenticationInterceptors({this.client}) : assert(client != null);
-
   @override
-  Future onRequest(RequestOptions options) {
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     if (this.client.authentication != null) {
       injectToken(options);
     }
-    return super.onRequest(options);
+    super.onRequest(options, handler);
   }
 
   @override
-  Future onResponse(Response response) {
-    return super.onResponse(response);
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    super.onResponse(response, handler);
   }
 
   @override
-  Future onError(DioError err) {
-    return super.onError(err);
+  void onError(DioError err, ErrorInterceptorHandler handler) {
+    super.onError(err, handler);
   }
 
   void injectToken(RequestOptions options) {
