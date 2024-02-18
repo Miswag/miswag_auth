@@ -25,9 +25,10 @@ class Authentication extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _AuthenticationState();
 
-  static setup({@required AuthOptions options}) {
-    assert(options != null);
-    I.registerLazySingleton(() => ApiClient(options));
+  static setup(
+      {@required AuthOptions options, @required AuthOptions authOptions}) {
+    assert(options != null, authOptions != null);
+    I.registerLazySingleton(() => ApiClient(options, authOptions));
     I.registerLazySingleton(() =>
         UserRepository(GetIt.I.get<ApiClient>(), loginPath: options.loginPath));
   }
