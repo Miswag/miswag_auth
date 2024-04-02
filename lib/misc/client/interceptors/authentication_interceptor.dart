@@ -5,7 +5,7 @@ import 'package:miswag_auth/models/auth_options.dart';
 class AuthenticationInterceptors extends InterceptorsWrapper {
   final ApiClient client;
 
-  AuthenticationInterceptors({this.client}) : assert(client != null);
+  AuthenticationInterceptors({required this.client});
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     if (this.client.authentication != null) {
@@ -28,14 +28,14 @@ class AuthenticationInterceptors extends InterceptorsWrapper {
     if (this.client.authOptions.tokenType == TokenType.GET) {
       options.queryParameters.addAll({
         this.client.authOptions.tokenKey:
-            this.client.authentication[this.client.authOptions.tokenKey]
+            this.client.authentication?[this.client.authOptions.tokenKey]
       });
     }
 
     if (this.client.authOptions.tokenType == TokenType.Bearer) {
       options.headers.addAll({
         this.client.authOptions.customAuthHeader:
-            "Bearer ${this.client.authentication[this.client.authOptions.tokenKey]}"
+            "Bearer ${this.client.authentication?[this.client.authOptions.tokenKey]}"
       });
     }
   }

@@ -14,10 +14,10 @@ class LoginAPI {
       return response.data;
     } on DioError catch (e) {
       if (e.response != null) {
-        if (e.response.data is Map)
-          throw LoginAPIException(e.response.data);
+        if (e.response?.data is Map)
+          throw LoginAPIException(e.response?.data);
         else
-          throw LoginAPIException({"error": e.response.data});
+          throw LoginAPIException({"error": e.response?.data});
       }
       rethrow;
     }

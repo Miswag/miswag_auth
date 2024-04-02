@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 
- Map<DioErrorType, String> errors = {
-	DioErrorType.connectTimeout: "CONNECT_TIMEOUT_ERROR_MESSAGE",
-	DioErrorType.sendTimeout: "SLOW_INTERNET_TIMEOUT_ERROR_MESSAGE",
-	DioErrorType.receiveTimeout: "SERVER_TIMEOUT_ERROR_MESSAGE",
+ Map<DioExceptionType, String> errors = {
+	DioExceptionType.connectionTimeout: "CONNECT_TIMEOUT_ERROR_MESSAGE",
+	DioExceptionType.sendTimeout: "SLOW_INTERNET_TIMEOUT_ERROR_MESSAGE",
+	DioExceptionType.receiveTimeout: "SERVER_TIMEOUT_ERROR_MESSAGE",
 };
 
-String resolve(DioErrorType type) => errors[type];
+String resolve(DioExceptionType type) => errors[type] ?? "CONNECT_TIMEOUT_ERROR_MESSAGE";

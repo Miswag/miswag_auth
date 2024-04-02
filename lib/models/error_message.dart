@@ -6,11 +6,11 @@ import 'dart:convert';
 
 class ErrorMessage {
   final String message;
-  final Errors errors;
+  final Errors? errors;
 
   ErrorMessage({
-    this.message,
-    this.errors,
+    required this.message,
+    required this.errors,
   });
 
   factory ErrorMessage.fromJson(String str) =>
@@ -27,7 +27,7 @@ class ErrorMessage {
 
   Map<String, dynamic> toMap() => {
         "message": message,
-        "errors": errors.toMap(),
+        "errors": errors?.toMap(),
       };
 }
 
@@ -35,7 +35,7 @@ class Errors {
   final Map<String, dynamic> fieldsReasons;
 
   Errors({
-    this.fieldsReasons,
+    required this.fieldsReasons,
   });
 
   factory Errors.fromJson(String str) =>

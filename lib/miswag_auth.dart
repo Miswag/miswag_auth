@@ -16,17 +16,17 @@ class Authentication extends StatefulWidget {
   final Widget Function(BuildContext context) onAppStart;
 
   const Authentication({
-    Key key,
-    @required this.onAuthentication,
-    @required this.onAuthenticated,
-    @required this.onAppStart,
+    Key? key,
+    required this.onAuthentication,
+    required this.onAuthenticated,
+    required this.onAppStart,
   }) : super();
 
   @override
   State<StatefulWidget> createState() => _AuthenticationState();
 
   static setup(
-      {@required AuthOptions options, @required AuthOptions authOptions}) {
+      {required AuthOptions options, required AuthOptions authOptions}) {
     assert(options != null, authOptions != null);
     I.registerLazySingleton(() => ApiClient(options, authOptions));
     I.registerLazySingleton(() =>

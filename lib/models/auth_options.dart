@@ -14,7 +14,7 @@ class AuthOptions {
   final int receivingTimeout;
 
   const AuthOptions(
-      {@required this.baseUrl,
+      {required this.baseUrl,
       this.loginPath = "login.php",
       this.tokenKey = "token",
       this.usernameKey = "username",

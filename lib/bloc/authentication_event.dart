@@ -19,7 +19,7 @@ class AppStarted extends AuthenticationEvent {
 class LoggedIn extends AuthenticationEvent {
   final Map<String, Object> authentication;
 
-  const LoggedIn({@required this.authentication}) : super();
+  const LoggedIn({required this.authentication}) : super();
 
   @override
   String toString() => 'LoggedIn { Authentication Object: $authentication }';

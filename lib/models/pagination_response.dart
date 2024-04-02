@@ -3,20 +3,20 @@ import 'dart:convert';
 typedef ItemsCreator<S> = List<S> Function(List<dynamic> json);
 
 class PaginationResponse<T> {
-  ItemsCreator<T> creator;
+  ItemsCreator<T>? creator;
   final dynamic rawData;
-  final int currentPage;
-  List<T> data = [];
-  final String firstPageUrl;
-  final int from;
-  final int lastPage;
-  final String lastPageUrl;
-  final String nextPageUrl;
-  final String path;
-  final int perPage;
-  final String prevPageUrl;
-  final int to;
-  final int total;
+  final int? currentPage;
+  List<T>? data = [];
+  final String? firstPageUrl;
+  final int? from;
+  final int? lastPage;
+  final String? lastPageUrl;
+  final String? nextPageUrl;
+  final String? path;
+  final int? perPage;
+  final String? prevPageUrl;
+  final int? to;
+  final int? total;
 
   PaginationResponse(
       {this.rawData,
@@ -33,23 +33,25 @@ class PaginationResponse<T> {
       this.to,
       this.total,
       this.creator}) {
-    final List<T> items = creator(rawData as List<dynamic>);
-    data = items;
+    if (creator != null) {
+      final List<T> items = creator!(rawData as List<dynamic>);
+      data = items;
+    }
   }
 
   PaginationResponse copyWith({
-    int currentPage,
-    final List<T> data,
-    String firstPageUrl,
-    int from,
-    int lastPage,
-    String lastPageUrl,
-    String nextPageUrl,
-    String path,
-    int perPage,
-    String prevPageUrl,
-    int to,
-    int total,
+    int? currentPage,
+    List<T>? data,
+    String? firstPageUrl,
+    int? from,
+    int? lastPage,
+    String? lastPageUrl,
+    String? nextPageUrl,
+    String? path,
+    int? perPage,
+    String? prevPageUrl,
+    int? to,
+    int? total,
   }) =>
       PaginationResponse(
         currentPage: currentPage ?? this.currentPage,
@@ -100,7 +102,7 @@ class PaginationResponse<T> {
 
   Map<String, dynamic> toMap() => {
         "current_page": currentPage ?? currentPage,
-        "data": data == null ? null : List<dynamic>.from(data.map((x) => x)),
+        "data": data == null ? null : List<dynamic>.from(data!.map((x) => x)),
         "first_page_url": firstPageUrl ?? firstPageUrl,
         "from": from ?? from,
         "last_page": lastPage ?? lastPage,

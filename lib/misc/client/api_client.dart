@@ -7,23 +7,23 @@ class ApiClient {
   final AuthOptions options;
   final AuthOptions authOptions;
   final bool debug;
-  Map<String, Object> authentication;
-  Dio client;
-  Dio authClient;
+  Map<String, Object>? authentication;
+  late Dio client;
+  late Dio authClient;
   ApiClient(this.options, this.authOptions, {this.debug = false})
       : assert(authOptions != null, options != null) {
     final BaseOptions options = BaseOptions(
         baseUrl: this.options.baseUrl,
-        connectTimeout: this.options.connectingTimeout,
-        receiveTimeout: this.options.receivingTimeout,
+        connectTimeout: Duration(seconds: this.options.connectingTimeout),
+        receiveTimeout: Duration(seconds: this.options.receivingTimeout),
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json"
         });
     final BaseOptions authOptions = BaseOptions(
         baseUrl: this.authOptions.baseUrl,
-        connectTimeout: this.authOptions.connectingTimeout,
-        receiveTimeout: this.authOptions.receivingTimeout,
+        connectTimeout: Duration(seconds: this.options.connectingTimeout),
+        receiveTimeout: Duration(seconds: this.options.receivingTimeout),
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json"
