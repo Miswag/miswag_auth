@@ -49,7 +49,10 @@ class UserRepository {
     final storage = await SharedPreferences.getInstance();
     final String? _json = storage.getString(kTokenField);
     if (_json != null) {
-      return json.decode(_json);
+      final Map<String, dynamic> decodedMap = json.decode(_json);
+      final Map<String, Object> objectMap =
+          Map<String, Object>.from(decodedMap);
+      return objectMap;
     }
     return null;
   }
