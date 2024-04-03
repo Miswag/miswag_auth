@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter/foundation.dart';
 import 'package:miswag_auth/repository/user_repository.dart';
 
 import 'bloc.dart';
