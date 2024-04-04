@@ -16,6 +16,9 @@ class ApiClient {
         baseUrl: this.options.baseUrl,
         connectTimeout: Duration(seconds: this.options.connectingTimeout),
         receiveTimeout: Duration(seconds: this.options.receivingTimeout),
+        validateStatus: (_) => true,
+        contentType: Headers.jsonContentType,
+        responseType: ResponseType.json,
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json"
@@ -24,6 +27,9 @@ class ApiClient {
         baseUrl: this.authOptions.baseUrl,
         connectTimeout: Duration(seconds: this.options.connectingTimeout),
         receiveTimeout: Duration(seconds: this.options.receivingTimeout),
+        validateStatus: (_) => true,
+        contentType: Headers.jsonContentType,
+        responseType: ResponseType.json,
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json"
